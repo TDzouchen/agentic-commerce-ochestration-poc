@@ -9,6 +9,10 @@ function matchKeywords(text, keywords) {
   return keywords.some((kw) => lower.includes(kw.toLowerCase()))
 }
 
+function randomDelay() {
+  return config.typingDelayMin + Math.random() * (config.typingDelayMax - config.typingDelayMin)
+}
+
 export function useConversation() {
   const [stageIndex, setStageIndex] = useState(0)
   const [messages, setMessages] = useState([greetingMessage])
@@ -34,7 +38,7 @@ export function useConversation() {
         }
         setMessages((prev) => [...prev, aiMsg])
         setIsTyping(false)
-      }, config.typingDelay)
+      }, randomDelay())
     },
     []
   )
@@ -60,7 +64,7 @@ export function useConversation() {
             { type: 'ai', text: stageData.fallback, component: null },
           ])
           setIsTyping(false)
-        }, config.typingDelay)
+        }, randomDelay())
       }
     },
     [currentStage, stageIndex, isTyping, addAiResponse]

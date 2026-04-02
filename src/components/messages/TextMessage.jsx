@@ -1,9 +1,37 @@
+function parseInlineMarkdown(text) {
+  const parts = []
+  // Match **bold**, *italic*, and `code`
+  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g
+  let lastIndex = 0
+  let match
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index))
+    }
+    if (match[2]) {
+      parts.push(<strong key={match.index} className="font-semibold">{match[2]}</strong>)
+    } else if (match[3]) {
+      parts.push(<em key={match.index}>{match[3]}</em>)
+    } else if (match[4]) {
+      parts.push(<code key={match.index} className="bg-gray-100 px-1 rounded text-xs">{match[4]}</code>)
+    }
+    lastIndex = match.index + match[0].length
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex))
+  }
+
+  return parts
+}
+
 export default function TextMessage({ message }) {
   if (message.type === 'user') {
     return (
       <div className="flex justify-end mb-4">
         <div className="bg-gray-800 text-white rounded-2xl rounded-br-sm px-4 py-3 max-w-md">
-          <p className="text-sm">{message.text}</p>
+          <p className="text-sm">{parseInlineMarkdown(message.text)}</p>
         </div>
       </div>
     )
@@ -12,22 +40,16 @@ export default function TextMessage({ message }) {
   return (
     <div className="flex flex-col items-start mb-4">
       <div className="flex items-center gap-2 mb-2">
-        {/* AI avatar placeholder */}
-        <div className="w-6 h-6 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-          <img
-            src="/images/ai-avatar.png"
-            alt="AI"
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.style.display = 'none'
-            }}
-          />
-        </div>
+        {/* AI avatar */}
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+          <circle cx="12" cy="12" r="12" fill="#BAE0FF"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M9.49967 7.33325C7.19849 7.33325 5.33301 9.17003 5.33301 11.4358C5.33301 13.7016 7.19849 15.5384 9.49967 15.5384H9.91634V17.9999L13.8449 15.5384H14.4997C16.8009 15.5384 18.6663 13.7016 18.6663 11.4358C18.6663 9.17003 16.8009 7.33325 14.4997 7.33325H9.49967ZM9.08577 10.7091C9.58547 11.939 10.7379 12.7336 12.0208 12.7336C13.2643 12.7336 14.4015 11.973 14.9191 10.7959L13.9397 10.3293C13.5973 11.1085 12.844 11.6121 12.0208 11.6121C11.1714 11.6121 10.4087 11.0861 10.0778 10.2721L9.08577 10.7091Z" fill="#00474F"/>
+        </svg>
         <span className="gradient-text text-sm font-semibold">AI Assistant</span>
       </div>
       <div className="max-w-lg">
         <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-          {message.text}
+          {parseInlineMarkdown(message.text)}
         </p>
         {message.timestamp && (
           <span className="text-xs text-gray-400 mt-1 block">{message.timestamp}</span>

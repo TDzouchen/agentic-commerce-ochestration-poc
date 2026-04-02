@@ -1,6 +1,8 @@
 export const config = {
-  typingDelay: 1500,
+  typingDelayMin: 3000,
+  typingDelayMax: 10000,
   widgetWidth: 1000,
   widgetHeight: 977,
-  backgroundImage: '',
+  widgetOffsetTop: '10vh',
+  widgetOffsetBottom: '10vh',
 }
