@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/agentic-commerce-ochestration-poc/',
+  base: './',
   plugins: [
     react(),
     tailwindcss(),
