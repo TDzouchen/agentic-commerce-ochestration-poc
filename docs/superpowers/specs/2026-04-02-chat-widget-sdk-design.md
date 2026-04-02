@@ -111,8 +111,8 @@ GREETING → RECOMMEND → CHECKOUT → COMPARE → ORDER → PAYMENT
 
 ### TextMessage
 
-- **AI messages**: Left-aligned, "AI Assistant" label with blue text + orange dot avatar. Copy/like/dislike icons below the message. Timestamp shown on some messages (e.g. "10:30 AM").
-- **User messages**: Right-aligned, dark background rounded bubble, white text.
+- **AI messages**: Left-aligned. Avatar image (placeholder slot, to be replaced). Author label "AI Assistant" with gradient text: `background: linear-gradient(90deg, #00474F 0%, #BAE0FF 127.54%)` + `-webkit-background-clip: text`. Copy/like/dislike icons below the message. Timestamp shown on some messages (e.g. "10:30 AM").
+- **User messages**: Right-aligned, dark background rounded bubble, white text. No avatar, no timestamp.
 
 ### ProductCards
 
