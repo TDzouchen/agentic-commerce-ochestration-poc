@@ -95,9 +95,13 @@ GREETING → RECOMMEND → CHECKOUT → COMPARE → ORDER → PAYMENT
 
 ### ChatWidget (centered modal)
 
-- Centered on screen, approximately 500px wide x 600px tall
-- Gradient border effect (light blue to light green, glass-morphism style per design)
-- Rounded corners, drop shadow
+- Centered on screen, 1000px wide x 977px tall
+- Border radius: 20px
+- Gradient border: `border: 4px solid; border-image-source: linear-gradient(226.31deg, #0FB0EA 0.56%, #F4FFDF 100%)`
+- Dual box shadow: `0px 4px 8px -2px #00000014`, `0px 8px 16px 0px #0000001A`
+- Bottom gradient background (layered):
+  - Layer 1: `linear-gradient(279.67deg, #0088FF 1.6%, #6FB0B9 28.41%, #35903C 61.37%, #079010 99.05%)`
+  - Layer 2: `linear-gradient(170.07deg, #F8F8F8 0%, #F8F8F8 50.14%, rgba(248,248,248,0.95) 65%, rgba(248,248,248,0.9) 85%, rgba(248,248,248,0.85) 90%, rgba(248,248,248,0.8) 95%, rgba(248,248,248,0.8) 100%)`
 - Three zones: ChatHeader / MessageList / MessageInput
 
 ### ChatHeader
@@ -226,8 +230,8 @@ Each stage defines:
 ### Config (config.js)
 
 - `typingDelay`: 1500ms (AI typing animation duration)
-- `widgetWidth`: 500px
-- `widgetHeight`: 600px
+- `widgetWidth`: 1000px
+- `widgetHeight`: 977px
 - `backgroundImage`: configurable path (slot for host page background)
 
 ## POC Strategy
