@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+.widget-border {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.widget-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 4px;
+  border-radius: 20px;
+  background: linear-gradient(226.31deg, #0FB0EA 0.56%, #F4FFDF 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.widget-bg {
+  background:
+    linear-gradient(170.07deg, #F8F8F8 0%, #F8F8F8 50.14%, rgba(248,248,248,0.95) 65%, rgba(248,248,248,0.9) 85%, rgba(248,248,248,0.85) 90%, rgba(248,248,248,0.8) 95%, rgba(248,248,248,0.8) 100%),
+    linear-gradient(279.67deg, #0088FF 1.6%, #6FB0B9 28.41%, #35903C 61.37%, #079010 99.05%);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00474F 0%, #BAE0FF 127.54%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
