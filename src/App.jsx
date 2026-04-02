@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import ChatBubble from './components/ChatBubble'
 import ChatWidget from './components/ChatWidget'
 import MessageList from './components/MessageList'
@@ -8,6 +8,12 @@ import { useConversation } from "./hooks/useConversation";
 function App() {
   const [isOpen, setIsOpen] = useState(false)
   const { messages, isTyping, currentStage, sendMessage, handleBuyNow, handleCheckout } = useConversation()
+
+  const handleBubbleSend = useCallback((text) => {
+    setIsOpen(true)
+    // Small delay so widget opens before message is sent
+    setTimeout(() => sendMessage(text), 100)
+  }, [sendMessage])
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
@@ -30,7 +36,7 @@ function App() {
       />
 
       {/* Chat bubble */}
-      {!isOpen && <ChatBubble onOpen={() => setIsOpen(true)} />}
+      {!isOpen && <ChatBubble onOpen={() => setIsOpen(true)} onSend={handleBubbleSend} />}
 
       {/* Chat widget - always mounted for animation */}
       <ChatWidget isOpen={isOpen} onMinimize={() => setIsOpen(false)}>

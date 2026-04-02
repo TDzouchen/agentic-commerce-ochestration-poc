@@ -1,9 +1,33 @@
-export default function ChatBubble({ onOpen }) {
+import { useState } from 'react'
+
+export default function ChatBubble({ onOpen, onSend }) {
+  const [text, setText] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const trimmed = text.trim()
+    if (!trimmed) {
+      // Empty submit — just open the widget
+      onOpen()
+      return
+    }
+    // Open widget and send the message
+    onSend(trimmed)
+    setText('')
+  }
+
+  const handleCardClick = (e) => {
+    // Don't open widget if clicking inside the input area
+    if (e.target.closest('form')) return
+    onOpen()
+  }
+
   return (
     <div
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-white rounded-2xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow"
       style={{ width: '320px' }}
-      onClick={onOpen}
+      onClick={handleCardClick}
     >
       <div className="flex items-center gap-2 mb-3">
         {/* AI avatar */}
@@ -16,12 +40,32 @@ export default function ChatBubble({ onOpen }) {
       <div className="text-sm text-gray-700 mb-3">
         Hi Alex — how can I help today?
       </div>
-      <div className="flex items-center gap-2 bg-gray-50 rounded-full px-4 py-2">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <circle cx="8" cy="8" r="7" stroke="#9CA3AF" strokeWidth="1.5" />
-        </svg>
-        <span className="text-sm text-gray-400">Ask anything...</span>
-      </div>
+      <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center gap-2 bg-gray-50 rounded-full px-4 py-2">
+          <input
+            type="text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Ask anything..."
+            className="flex-1 text-sm text-gray-700 placeholder-gray-400 outline-none bg-transparent cursor-text"
+          />
+          <button
+            type="submit"
+            disabled={!text.trim()}
+            className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-900 text-white disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+          >
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M7 1L7 13M7 1L2 6M7 1L12 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
     </div>
   )
 }
