@@ -51,9 +51,6 @@ export default function TextMessage({ message }) {
         <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
           {parseInlineMarkdown(message.text)}
         </p>
-        {message.timestamp && (
-          <span className="text-xs text-gray-400 mt-1 block">{message.timestamp}</span>
-        )}
       </div>
       {/* Action icons: copy, like, dislike */}
       <div className="flex items-center gap-3 mt-2">
