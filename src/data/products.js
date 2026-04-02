@@ -1,10 +1,14 @@
+import zenithPro from '../assets/images/Zenith-Pro.png'
+import ruMax350 from '../assets/images/RU-MAX-350.png'
+import airscSpeedcross from '../assets/images/AIRSC-SPEEDCROSSS.png'
+
 export const products = [
   {
     id: 1,
     name: 'Zenith Pro',
     category: 'Performance Running Shoes',
     price: 135,
-    image: '/images/Zenith-Pro.png',
+    image: zenithPro,
     inStock: true,
     material: 'Premium leather',
     weight: '310g',
@@ -16,7 +20,7 @@ export const products = [
     name: 'RU MAX 350',
     category: 'Performance Running Shoes',
     price: 128,
-    image: '/images/RU-MAX-350.png',
+    image: ruMax350,
     inStock: true,
     material: 'Engineered mesh',
     weight: '730g',
@@ -28,7 +32,7 @@ export const products = [
     name: 'AIRSC SPEEDCROSSS',
     category: 'Performance Running Shoes',
     price: 150,
-    image: '/images/AIRSC-SPEEDCROSSS.png',
+    image: airscSpeedcross,
     inStock: true,
     material: null,
     weight: null,

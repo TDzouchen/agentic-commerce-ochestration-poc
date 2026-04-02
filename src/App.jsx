@@ -4,6 +4,8 @@ import ChatWidget from './components/ChatWidget'
 import MessageList from './components/MessageList'
 import MessageInput from './components/MessageInput'
 import { useConversation } from "./hooks/useConversation";
+import bgMain from './assets/images/1-bg.png'
+import bgOther from './assets/images/other-bg.png'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,7 +24,7 @@ function App() {
         className="absolute inset-0 transition-opacity duration-300"
         style={{
           background:
-            "url(/images/1-bg.png) lightgray top center / cover no-repeat",
+            `url(${bgMain}) lightgray top center / cover no-repeat`,
           opacity: isOpen ? 0 : 1,
         }}
       />
@@ -30,7 +32,7 @@ function App() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300"
         style={{
           background:
-            "url(/images/other-bg.png) lightgray top center / cover no-repeat",
+            `url(${bgOther}) lightgray top center / cover no-repeat`,
           opacity: isOpen ? 1 : 0,
         }}
       />
