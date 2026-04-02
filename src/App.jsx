@@ -7,7 +7,7 @@ import { useConversation } from "./hooks/useConversation";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
-  const { messages, isTyping, currentStage, sendMessage, handleBuyNow } = useConversation()
+  const { messages, isTyping, currentStage, sendMessage, handleBuyNow, handleCheckout } = useConversation()
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
@@ -38,6 +38,7 @@ function App() {
           messages={messages}
           isTyping={isTyping}
           onBuyNow={handleBuyNow}
+          onCheckout={handleCheckout}
         />
         <MessageInput
           onSend={sendMessage}

@@ -47,13 +47,13 @@ export default function TextMessage({ message }) {
         </svg>
         <span className="gradient-text text-sm font-semibold">AI Assistant</span>
       </div>
-      <div className="max-w-lg">
+      <div className="max-w-lg pl-8">
         <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
           {parseInlineMarkdown(message.text)}
         </p>
       </div>
       {/* Action icons: copy, like, dislike */}
-      <div className="flex items-center gap-3 mt-2">
+      <div className="flex items-center gap-3 mt-2 pl-8">
         <button className="text-gray-400 hover:text-gray-600 transition-colors">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <rect x="4" y="1" width="8" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.2" />

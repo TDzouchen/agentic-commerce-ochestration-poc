@@ -91,11 +91,23 @@ export function useConversation() {
     [currentStage, stageIndex, isTyping, addAiResponse]
   )
 
+  const handleCheckout = useCallback(() => {
+    if (isTyping) return
+    if (currentStage !== 'ORDER') return
+
+    const userMsg = { type: 'user', text: 'I have already paid.' }
+    setMessages((prev) => [...prev, userMsg])
+    const nextIndex = stageIndex + 1
+    setStageIndex(nextIndex)
+    addAiResponse(nextIndex)
+  }, [currentStage, stageIndex, isTyping, addAiResponse])
+
   return {
     messages,
     isTyping,
     currentStage,
     sendMessage,
     handleBuyNow,
+    handleCheckout,
   }
 }
