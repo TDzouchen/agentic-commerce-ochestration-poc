@@ -6,10 +6,10 @@ export default function ProductCards({ onBuyNow }) {
       {products.map((product) => (
         <div
           key={product.id}
-          className="bg-white border border-gray-200 rounded-2xl overflow-hidden p-3"
+          className="bg-white border border-gray-200 rounded-[12px] overflow-hidden p-4"
         >
           {/* Product image */}
-          <div className="bg-[#F3F4F6] rounded-xl flex items-center justify-center" style={{ height: '180px' }}>
+          <div className="bg-[#F5F5F5] rounded-[8px] flex items-center justify-center h-[180px]">
             <img
               src={product.image}
               alt={product.name}
@@ -39,12 +39,11 @@ export default function ProductCards({ onBuyNow }) {
             <div className="flex gap-2 items-stretch">
               <button
                 onClick={() => onBuyNow(product)}
-                className="flex-1 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
-                style={{ height: '40px' }}
+                className="flex-1 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors h-[30px]"
               >
                 Buy now
               </button>
-              <button className="flex items-center justify-center rounded-lg overflow-hidden flex-shrink-0" style={{ width: '40px', height: '40px' }}>
+              <button className="flex items-center justify-center rounded-lg overflow-hidden flex-shrink-0 w-[30px] h-[30px]">
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 4C0 1.79086 1.79086 0 4 0H26C28.2091 0 30 1.79086 30 4V26C30 28.2091 28.2091 30 26 30H4C1.79086 30 0 28.2091 0 26V4Z" fill="#CCE4C9"/>
                   <path fillRule="evenodd" clipRule="evenodd" d="M14.4404 8.61985C14.7004 8.22665 15.2802 8.22665 15.5469 8.61985L18.4736 12.9997H21.667C22.0337 12.9997 22.334 13.3001 22.334 13.6667L22.3135 13.8464L20.6201 20.0271C20.46 20.5867 19.947 20.9996 19.334 20.9997H10.667C10.0538 20.9997 9.54018 20.5869 9.38672 20.0271L7.69336 13.8464C7.67344 13.7865 7.667 13.7266 7.66699 13.6667C7.66699 13.3001 7.96732 12.9997 8.33398 12.9997H11.5137L14.4404 8.61985ZM15 15.6667C14.2669 15.6669 13.6671 16.2666 13.667 16.9997C13.667 17.733 14.2668 18.3335 15 18.3337C15.7333 18.3337 16.334 17.7331 16.334 16.9997C16.3339 16.2665 15.7333 15.6667 15 15.6667ZM13.1201 12.9997H16.8672L14.9941 10.1931L13.1201 12.9997Z" fill="#1F1F1F"/>

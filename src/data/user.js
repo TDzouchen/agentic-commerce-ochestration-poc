@@ -9,7 +9,8 @@ export const user = {
 export const order = {
   id: '#127896394',
   productId: 1,
-  size: 'US Mens: 10',
+  size: 'US Mens',
+  sizeValue: '10',
   quantity: 1,
   subtotal: 135,
   tax: 5,

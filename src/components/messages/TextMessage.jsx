@@ -47,7 +47,7 @@ export default function TextMessage({ message }) {
         </svg>
         <span className="gradient-text text-sm font-semibold">AI Assistant</span>
       </div>
-      <div className="max-w-lg pl-8">
+      <div className="pl-8">
         <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
           {parseInlineMarkdown(message.text)}
         </p>

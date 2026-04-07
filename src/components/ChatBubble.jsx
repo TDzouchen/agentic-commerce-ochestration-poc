@@ -41,7 +41,7 @@ export default function ChatBubble({ onOpen, onSend }) {
         Hi Alex — how can I help today?
       </div>
       <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center gap-2 bg-gray-50 rounded-full px-4 py-2">
+        <div className="flex items-center gap-2 bg-gray-50 rounded-[12px] px-4 py-2">
           <input
             type="text"
             value={text}

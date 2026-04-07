@@ -51,7 +51,7 @@ export default function MessageList({ messages, isTyping, onBuyNow, onCheckout }
   }
 
   return (
-    <div className="flex-1 overflow-y-auto px-6 py-4">
+    <div className="flex-1 overflow-y-auto px-15 py-4">
       {messages.map((msg, index) => {
         const components = Array.isArray(msg.component) ? msg.component : msg.component ? [msg.component] : []
         const showAiHeader = !msg.text && msg.type === 'ai' && components.some(c => c === 'OrderSummary' || c === 'CompareProduct')

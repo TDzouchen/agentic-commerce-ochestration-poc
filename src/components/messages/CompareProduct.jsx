@@ -12,7 +12,7 @@ const comparisonFields = [
 
 export default function CompareProduct({ onBuyNow }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 mb-4" style={{ maxWidth: '80%' }}>
+    <div className="bg-white rounded-[12px] border border-gray-200 shadow-sm p-4 mb-4 w-4/5">
       {/* Header */}
       <div className="flex items-center gap-2 mb-5">
         <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,7 @@ export default function CompareProduct({ onBuyNow }) {
         {compareProducts.map((product, idx) => (
           <div
             key={product.id}
-            className={`rounded-2xl p-3 pb-4 ${
+            className={`rounded-[12px] p-4 pb-4 ${
               idx === 0
                 ? 'border border-transparent'
                 : 'border border-gray-200'
@@ -41,7 +41,7 @@ export default function CompareProduct({ onBuyNow }) {
             }
           >
             {/* Image area */}
-            <div className="bg-gray-100 rounded-xl p-4 flex items-center justify-center relative w-full" style={{ height: '246px' }}>
+            <div className="bg-[#F5F5F5] rounded-[8px] p-4 flex items-center justify-center relative w-full h-[246px]">
               <img
                 src={product.image}
                 alt={product.name}
@@ -104,8 +104,7 @@ export default function CompareProduct({ onBuyNow }) {
           <button
             key={product.id}
             onClick={() => onBuyNow(product)}
-            className="w-full bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
-            style={{ height: '40px' }}
+            className="w-full bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors h-[36px]"
           >
             Buy now
           </button>
