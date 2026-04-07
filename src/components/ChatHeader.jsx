@@ -17,17 +17,28 @@ export default function ChatHeader({ onMinimize }) {
         <button
           onClick={onMinimize}
           className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label="Minimize"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="7" width="12" height="1.5" rx="0.75" fill="#6B7280" />
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.8337 10.8333H4.16699V9.16663H15.8337V10.8333Z" fill="#1F1F1F"/>
+          </svg>
+        </button>
+        {/* Maximize/Restore button */}
+        <button
+          className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label="Maximize"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 2.5C18.4165 2.50017 19.166 3.23383 19.166 4.15039V15.833C19.166 16.7496 18.4165 17.4998 17.5 17.5H2.5C1.58333 17.5 0.833008 16.7497 0.833008 15.833V4.15039C0.833008 3.23372 1.58333 2.5 2.5 2.5H17.5ZM2.5 4.1416V15.8496H17.5V4.1416H2.5ZM15.833 9.16699V14.167H9.16602V9.16699H15.833Z" fill="#1F1F1F"/>
           </svg>
         </button>
         {/* More options button */}
-        <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="3" r="1.5" fill="#6B7280" />
-            <circle cx="8" cy="8" r="1.5" fill="#6B7280" />
-            <circle cx="8" cy="13" r="1.5" fill="#6B7280" />
+        <button
+          className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label="More options"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" clipRule="evenodd" d="M9.99967 6.66671C10.9163 6.66671 11.6663 5.91671 11.6663 5.00004C11.6663 4.08337 10.9163 3.33337 9.99967 3.33337C9.08301 3.33337 8.33301 4.08337 8.33301 5.00004C8.33301 5.91671 9.08301 6.66671 9.99967 6.66671ZM9.99967 8.33337C9.08301 8.33337 8.33301 9.08337 8.33301 10C8.33301 10.9167 9.08301 11.6667 9.99967 11.6667C10.9163 11.6667 11.6663 10.9167 11.6663 10C11.6663 9.08337 10.9163 8.33337 9.99967 8.33337ZM8.33301 15C8.33301 14.0834 9.08301 13.3334 9.99967 13.3334C10.9163 13.3334 11.6663 14.0834 11.6663 15C11.6663 15.9167 10.9163 16.6667 9.99967 16.6667C9.08301 16.6667 8.33301 15.9167 8.33301 15Z" fill="#1F1F1F"/>
           </svg>
         </button>
       </div>
