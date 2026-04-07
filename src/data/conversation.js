@@ -7,28 +7,21 @@ export const stages = {
     fallback:
       "I'd be happy to help you find the perfect shoes! Are you looking for running shoes, casual wear, or something else?",
   },
-  RECOMMEND: {
-    keywords: ['go with', 'buy', 'zenith', 'select', 'choose', 'order', 'want'],
-    aiReply: '',
-    component: 'OrderSummary',
-    fallback:
-      "Great options, right? You can click 'Buy now' on any product, or tell me which one you'd like to go with!",
-  },
-  CHECKOUT: {
+  COMPARE: {
     keywords: ['compare', 'difference', 'vs', 'how do these', 'diff', 'versus'],
     aiReply: '',
     component: 'CompareProduct',
     fallback:
-      'Ready to checkout? Or would you like to compare this with another product first?',
+      "Great options, right? Would you like to compare any of these products to find the best fit for you?",
   },
-  COMPARE: {
+  ORDER: {
     keywords: [],
     aiReply: '',
     component: 'OrderSummary',
     fallback:
       "Take your time comparing! Click 'Buy now' when you've decided, or ask me anything about these products.",
   },
-  ORDER: {
+  CHECKOUT: {
     keywords: ['paid', 'pay', 'already paid', 'payment', 'done', 'completed'],
     aiReply: '',
     component: 'PaymentSuccess',

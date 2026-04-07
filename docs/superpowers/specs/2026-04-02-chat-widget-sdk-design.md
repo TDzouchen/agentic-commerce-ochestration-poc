@@ -62,28 +62,27 @@ public/
 
 ## Conversation Flow Engine
 
-### 6-Stage State Machine
+### 5-Stage State Machine
 
 ```
-GREETING → RECOMMEND → CHECKOUT → COMPARE → ORDER → PAYMENT
+GREETING → COMPARE → ORDER → CHECKOUT → PAYMENT
 ```
 
 ### Stage Transitions
 
 | # | From | To | Trigger | AI Response |
 |---|------|----|---------|-------------|
-| 1 | GREETING | RECOMMEND | User input matches: running, shoe, runner, long-distance | Text reply + ProductCards (3 products) |
-| 2 | RECOMMEND | CHECKOUT | User input matches: go with, buy, zenith, select, choose — OR user clicks "Buy now" on a card | Text reply + OrderSummary card |
-| 3 | CHECKOUT | COMPARE | User input matches: compare, difference, vs, how do these | CompareProduct card (2 products) |
-| 4 | COMPARE | ORDER | User clicks "Buy now" on first product in compare card → system auto-sends a user message (e.g. "I'd like to order the Zenith Pro") | OrderSummary card (same component as step 2) |
-| 5 | ORDER | PAYMENT | User input matches: paid, pay, already paid, payment | PaymentSuccess card |
+| 1 | GREETING | COMPARE | User input matches: running, shoe, runner, long-distance | Text reply + ProductCards (3 products) |
+| 2 | COMPARE | ORDER | User input matches: compare, difference, vs, how do these | CompareProduct card (2 products) |
+| 3 | ORDER | CHECKOUT | User clicks "Buy now" on compare card → system auto-sends "I'd like to order the Zenith Pro." | OrderSummary card |
+| 4 | CHECKOUT | PAYMENT | User clicks "Checkout" button → system auto-sends "I have already paid." | PaymentSuccess card |
 
 ### Interaction Details
 
-- After user sends a message, show "AI is typing..." animation (1-2s delay), then render AI response
+- After user sends a message, show "AI is typing..." animation (3-10s delay), then render AI response
 - Keyword matching is case-insensitive
 - If user input matches no keywords, AI replies with a contextual nudge text, stays in current stage
-- "Buy now" buttons on ProductCards (step 2) and CompareProduct (step 4) also trigger stage transitions
+- "Buy now" button on CompareProduct (step 3) and "Checkout" button on OrderSummary (step 4) trigger stage transitions via auto-generated user messages
 
 ## UI Component Specifications
 
@@ -236,7 +235,7 @@ Each stage defines:
 
 ## POC Strategy
 
-1. **Demo path first** — Only implement the 6-step flow from design, no extra features (no login, no real API, no persistence)
+1. **Demo path first** — Only implement the 5-step flow from design, no extra features (no login, no real API, no persistence)
 2. **Visual fidelity first** — Maximum effort to reproduce design mockups (gradient borders, card styles, spacing, colors). Product images use placeholders, ready for replacement
 3. **Graceful fallback** — Unmatched user input gets a contextual nudge reply, conversation never gets stuck
 4. **One-command start** — `npm install && npm run dev`, no env vars or backend needed

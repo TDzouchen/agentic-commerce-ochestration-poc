@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { stages, greetingMessage } from '../data/conversation'
 import { config } from '../data/config'
 
-const STAGE_ORDER = ['GREETING', 'RECOMMEND', 'CHECKOUT', 'COMPARE', 'ORDER', 'PAYMENT']
+const STAGE_ORDER = ['GREETING', 'COMPARE', 'ORDER', 'CHECKOUT', 'PAYMENT']
 
 function matchKeywords(text, keywords) {
   const lower = text.toLowerCase()
@@ -73,27 +73,20 @@ export function useConversation() {
   const handleBuyNow = useCallback(
     (product) => {
       if (isTyping) return
+      if (currentStage !== 'ORDER') return
 
-      if (currentStage === 'RECOMMEND') {
-        const userMsg = { type: 'user', text: `Let's go with the ${product.name}.` }
-        setMessages((prev) => [...prev, userMsg])
-        const nextIndex = stageIndex + 1
-        setStageIndex(nextIndex)
-        addAiResponse(nextIndex)
-      } else if (currentStage === 'COMPARE') {
-        const userMsg = { type: 'user', text: `I'd like to order the ${product.name}.` }
-        setMessages((prev) => [...prev, userMsg])
-        const nextIndex = stageIndex + 1
-        setStageIndex(nextIndex)
-        addAiResponse(nextIndex)
-      }
+      const userMsg = { type: 'user', text: `I'd like to order the ${product.name}.` }
+      setMessages((prev) => [...prev, userMsg])
+      const nextIndex = stageIndex + 1
+      setStageIndex(nextIndex)
+      addAiResponse(nextIndex)
     },
     [currentStage, stageIndex, isTyping, addAiResponse]
   )
 
   const handleCheckout = useCallback(() => {
     if (isTyping) return
-    if (currentStage !== 'ORDER') return
+    if (currentStage !== 'CHECKOUT') return
 
     const userMsg = { type: 'user', text: 'I have already paid.' }
     setMessages((prev) => [...prev, userMsg])
