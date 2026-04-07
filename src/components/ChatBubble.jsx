@@ -25,10 +25,11 @@ export default function ChatBubble({ onOpen, onSend }) {
 
   return (
     <div
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-white rounded-2xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow"
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 cursor-pointer"
       style={{ width: '320px' }}
       onClick={handleCardClick}
     >
+      <div className="widget-border bg-white shadow-lg hover:shadow-xl transition-shadow p-4 rounded-[20px]">
       <div className="flex items-center gap-2 mb-3">
         {/* AI avatar */}
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
@@ -41,7 +42,7 @@ export default function ChatBubble({ onOpen, onSend }) {
         Hi Alex — how can I help today?
       </div>
       <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center gap-2 bg-gray-50 rounded-[12px] px-4 py-2">
+        <div className="flex items-center gap-2 bg-gray-50 rounded-full px-4 py-2">
           <input
             type="text"
             value={text}
@@ -66,6 +67,7 @@ export default function ChatBubble({ onOpen, onSend }) {
           </button>
         </div>
       </form>
+      </div>
     </div>
   )
 }

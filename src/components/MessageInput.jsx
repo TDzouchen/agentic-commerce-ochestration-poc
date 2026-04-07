@@ -13,7 +13,7 @@ export default function MessageInput({ onSend, disabled }) {
 
   return (
     <form onSubmit={handleSubmit} className="px-6 py-4">
-      <div className="flex items-center gap-3 bg-white rounded-[12px] border border-gray-200 px-4 py-3 shadow-[0px_2px_4px_-1px_rgba(7,16,32,0.06),0px_4px_8px_0px_rgba(7,16,32,0.08)]">
+        <div className="flex items-center gap-3 bg-white rounded-full border border-gray-200 px-4 py-3 shadow-[0px_2px_4px_-1px_rgba(7,16,32,0.06),0px_4px_8px_0px_rgba(7,16,32,0.08)]">
         <input
           type="text"
           value={text}
