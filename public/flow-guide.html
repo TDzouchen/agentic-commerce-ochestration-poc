@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agentic Commerce POC — Demo Flow Guide</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #111827;
+        background: #0f172a;
+        line-height: 1.45;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        background: #0f172a;
+        color: #fff;
+        padding: 12px 24px;
+        text-align: center;
+        flex-shrink: 0;
+        border-bottom: 1px solid #1e293b;
+      }
+      .header h1 {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .header p {
+        font-size: 11px;
+        color: #64748b;
+        margin-top: 2px;
+      }
+
+      /* Main horizontal container */
+      .board {
+        flex: 1;
+        display: flex;
+        gap: 0;
+        padding: 12px;
+        overflow: hidden;
+        min-height: 0;
+      }
+
+      /* Arrow between columns */
+      .arrow-col {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 24px;
+        color: #334155;
+        font-size: 18px;
+      }
+
+      /* Step column */
+      .col {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .col-head {
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid #e2e8f0;
+        flex-shrink: 0;
+      }
+      .col-num {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0fb0ea, #38bdf8);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
+      .col-head h3 {
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .col-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px 12px;
+      }
+      .col-body > * + * {
+        margin-top: 8px;
+      }
+
+      /* Sections */
+      .lbl {
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #94a3b8;
+        margin-bottom: 3px;
+      }
+      .ai {
+        background: #f1f5f9;
+        border-left: 2px solid #0fb0ea;
+        border-radius: 6px;
+        padding: 6px 8px;
+        font-size: 11px;
+        color: #374151;
+      }
+      .rich {
+        background: #f8fafc;
+        border: 1px dashed #cbd5e1;
+        border-radius: 6px;
+        padding: 6px 8px;
+        font-size: 11px;
+        color: #334155;
+      }
+      .rich strong {
+        color: #0f172a;
+      }
+      .rich .sub {
+        color: #94a3b8;
+        font-size: 10px;
+        margin-top: 2px;
+      }
+
+      /* Keyword & button tags */
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .kw {
+        background: #ecfdf5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+        border-radius: 10px;
+        padding: 1px 8px;
+        font-size: 10px;
+        font-weight: 600;
+        font-family: "SF Mono", ui-monospace, monospace;
+      }
+      .btn-tag {
+        background: #dbeafe;
+        color: #1e40af;
+        border: 1px solid #93c5fd;
+        border-radius: 10px;
+        padding: 1px 8px;
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      /* Trigger type badge */
+      .ttype {
+        display: inline-block;
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+        padding: 1px 6px;
+        border-radius: 3px;
+        margin-bottom: 3px;
+      }
+      .ttype.kw-type {
+        background: #059669;
+      }
+      .ttype.btn-type {
+        background: #2563eb;
+      }
+
+      /* Fallback */
+      .fb {
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+        border-radius: 6px;
+        padding: 5px 8px;
+        font-size: 10px;
+        color: #9a3412;
+      }
+
+      /* End badge */
+      .end-badge {
+        display: inline-block;
+        background: #dc2626;
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0px 6px;
+        border-radius: 8px;
+        margin-left: 4px;
+        vertical-align: middle;
+      }
+
+      /* Footer */
+      .footer {
+        background: #0f172a;
+        border-top: 1px solid #1e293b;
+        padding: 8px 24px;
+        flex-shrink: 0;
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .footer span {
+        font-size: 10px;
+        color: #64748b;
+      }
+      .footer strong {
+        color: #94a3b8;
+      }
+
+      /* Two-trigger block */
+      .trigger-block {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Agentic Commerce POC — Demo Flow</h1>
+      <p>
+        Each column = one step. Green tags = type keyword · Blue tags = click
+        rich UI button.
+      </p>
+    </div>
+
+    <div class="board">
+      <!-- ===== STEP 1 ===== -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-num">1</div>
+          <h3>Welcome</h3>
+        </div>
+        <div class="col-body">
+          <div>
+            <div class="lbl">AI Says</div>
+            <div class="ai">"Hi Alex — how can I help today?"</div>
+          </div>
+          <div>
+            <div class="lbl">UI Output</div>
+            <div class="rich">Text bubble only</div>
+          </div>
+          <div>
+            <div class="lbl">Advance → Step 2</div>
+            <span class="ttype kw-type">Keyword</span>
+            <div class="tags">
+              <span class="kw">running</span>
+              <span class="kw">shoe</span>
+              <span class="kw">runner</span>
+              <span class="kw">long-distance</span>
+              <span class="kw">sneaker</span>
+              <span class="kw">trainer</span>
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Fallback</div>
+            <div class="fb">
+              "Are you looking for running shoes, casual wear, or something
+              else?"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-col">→</div>
+
+      <!-- ===== STEP 2 ===== -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-num">2</div>
+          <h3>Product Cards</h3>
+        </div>
+        <div class="col-body">
+          <div>
+            <div class="lbl">AI Says</div>
+            <div class="ai">
+              "This is our fastest running shoe…Would you like to compare?"
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Rich UI</div>
+            <div class="rich">
+              <strong>ProductCards</strong><br />
+              3 cards: Zenith Pro ($135) · RU MAX 350 ($128) · AIRSC SPEEDCROSSS
+              ($150)<br />
+              <div class="sub">[Buy now] buttons do NOT advance here</div>
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Advance → Step 3</div>
+            <span class="ttype kw-type">Keyword</span>
+            <div class="tags">
+              <span class="kw">compare</span>
+              <span class="kw">difference</span>
+              <span class="kw">vs</span>
+              <span class="kw">how do these</span>
+              <span class="kw">diff</span>
+              <span class="kw">versus</span>
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Fallback</div>
+            <div class="fb">
+              "Would you like to compare any of these products?"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-col">→</div>
+
+      <!-- ===== STEP 3 ===== -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-num">3</div>
+          <h3>Compare</h3>
+        </div>
+        <div class="col-body">
+          <div>
+            <div class="lbl">AI Says</div>
+            <div class="ai"><em>(no text)</em></div>
+          </div>
+          <div>
+            <div class="lbl">Rich UI</div>
+            <div class="rich">
+              <strong>CompareProduct</strong><br />
+              Zenith Pro ⭐ vs RU MAX 350<br />
+              Price · Material · Weight · Best for · Agent advice<br />
+              Each has <strong>[Buy now]</strong>
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Advance → Step 4</div>
+            <span class="ttype btn-type">Rich UI Button</span>
+            <div class="tags">
+              <span class="btn-tag">Click [Buy now]</span>
+            </div>
+            <div style="font-size: 10px; color: #64748b; margin-top: 2px">
+              Typing won't work — must click button.<br />
+              Auto-sends: "I'd like to order the {name}."
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Fallback</div>
+            <div class="fb">"Click 'Buy now' when you've decided."</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-col">→</div>
+
+      <!-- ===== STEP 4 ===== -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-num">4</div>
+          <h3>Order &amp; Checkout</h3>
+        </div>
+        <div class="col-body">
+          <div>
+            <div class="lbl">AI Says</div>
+            <div class="ai"><em>(no text)</em></div>
+          </div>
+          <div>
+            <div class="lbl">Rich UI</div>
+            <div class="rich">
+              <strong>OrderSummary</strong><br />
+              Zenith Pro · US 10 · $135 − 15% = <strong>$122</strong><br />
+              Ship to: ALEX M. · Syracuse CT<br />
+              Has <strong>[Checkout]</strong> button
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Advance → Step 5 (two ways)</div>
+            <div class="trigger-block">
+              <div>
+                <span class="ttype btn-type">Rich UI Button</span>
+                <div class="tags">
+                  <span class="btn-tag">Click [Checkout]</span>
+                </div>
+                <div style="font-size: 10px; color: #64748b">
+                  Auto-sends: "I have already paid."
+                </div>
+              </div>
+              <div style="font-size: 9px; color: #94a3b8; text-align: center">
+                — OR —
+              </div>
+              <div>
+                <span class="ttype kw-type">Keyword</span>
+                <div class="tags">
+                  <span class="kw">paid</span>
+                  <span class="kw">pay</span>
+                  <span class="kw">already paid</span>
+                  <span class="kw">payment</span>
+                  <span class="kw">done</span>
+                  <span class="kw">completed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Fallback</div>
+            <div class="fb">
+              "Let me know once you've completed the payment!"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-col">→</div>
+
+      <!-- ===== STEP 5 ===== -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-num">5</div>
+          <h3>Done <span class="end-badge">End</span></h3>
+        </div>
+        <div class="col-body">
+          <div>
+            <div class="lbl">Rich UI</div>
+            <div class="rich">
+              <strong>PaymentSuccess</strong><br />
+              ✅ Payment success<br />
+              Order #127896394<br />
+              Zenith Pro · Qty 1 · <strong>$122</strong><br />
+              Est. delivery: Wed, Apr 8
+            </div>
+          </div>
+          <div>
+            <div
+              class="fb"
+              style="background: #fef2f2; border-color: #fecaca; color: #991b1b"
+            >
+              <strong>Demo over.</strong> Input disabled. Refresh to restart.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span
+        ><strong>Quick script:</strong> "I need running shoes" → "compare them"
+        → click [Buy now] → click [Checkout] → done (~30s)</span
+      >
+      <span
+        ><strong>Order hardcoded:</strong> Zenith Pro · US 10 · Gold 15%
+        off</span
+      >
+      <span><strong>AI delay:</strong> 3–10s per response</span>
+      <span
+        ><strong>Linear only:</strong> no skip / no back / refresh = reset</span
+      >
+    </div>
+  </body>
+</html>
