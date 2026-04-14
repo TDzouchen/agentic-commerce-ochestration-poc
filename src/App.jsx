@@ -5,7 +5,6 @@ import MessageList from './components/MessageList'
 import MessageInput from './components/MessageInput'
 import { useConversation } from "./hooks/useConversation";
 import bgMain from './assets/images/1-bg.png'
-import bgOther from './assets/images/other-bg.png'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,21 +18,12 @@ function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
-      {/* Background images - both preloaded, toggled via opacity */}
+      {/* Background image - unified for both minimized and maximized states */}
       <div
-        className="absolute inset-0 transition-opacity duration-300"
+        className="absolute inset-0"
         style={{
           background:
             `url(${bgMain}) lightgray top center / cover no-repeat`,
-          opacity: isOpen ? 0 : 1,
-        }}
-      />
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300"
-        style={{
-          background:
-            `url(${bgOther}) lightgray top center / cover no-repeat`,
-          opacity: isOpen ? 1 : 0,
         }}
       />
 
