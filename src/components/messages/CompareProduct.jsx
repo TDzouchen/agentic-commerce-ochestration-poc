@@ -1,13 +1,29 @@
 import { products } from '../../data/products'
 
-const compareProducts = [products[0], products[1]]
+const compareProducts = [products[2], products[1]] // Shift Runner vs Vault Court Sneaker
 
-const comparisonFields = [
-  { label: 'Price', key: 'price', format: (v) => `$${v} USD` },
-  { label: 'Material', key: 'material' },
-  { label: 'Weight', key: 'weight' },
-  { label: 'Best for', key: 'bestFor' },
-  { label: 'Agent advice', key: 'agentAdvice' },
+const comparisonData = {
+  'Price': ['$195', '$175'],
+  'Width': ['Wide', 'Wide'],
+  'Toe Shape': ['Rounded toe', 'Rounded toe'],
+  'Construction': ['Stitchdown construction', 'Vulcanized rubber sole'],
+  'Break-in': ['Moderate break-in period', 'Minimal break-in period'],
+  'All-day Comfort': ['8+ hours', '6-8 hours'],
+  'Weather': ['Weather-resistant leather upper', 'Weather-resistant canvas upper'],
+  'Resolable': ['Yes, up to 3 years', 'No'],
+  'Fit Risk': ['LOW', 'LOW'],
+}
+
+const comparisonFields = Object.keys(comparisonData)
+
+const fitRiskAssessment = [
+  { name: 'Shift Runner', risk: 'LOW', note: 'wide fit and you own this product without return.' },
+  { name: 'Vault Court Sneaker', risk: 'LOW', note: 'wide fit and you own this product without return.' },
+]
+
+const recommendations = [
+  { name: 'Shift Runner', note: 'Best for durability, resolability, and longer all-day comfort.' },
+  { name: 'Vault Court Sneaker', note: 'Better for casual wear and minimal break-in period.' },
 ]
 
 export default function CompareProduct({ onBuyNow }) {
@@ -21,7 +37,7 @@ export default function CompareProduct({ onBuyNow }) {
         <h3 className="text-lg font-bold text-gray-900">Compare Product</h3>
       </div>
 
-      {/* Product cards row - each in its own bordered card */}
+      {/* Product cards row */}
       <div className="grid grid-cols-2 gap-4 mb-5">
         {compareProducts.map((product, idx) => (
           <div
@@ -64,31 +80,29 @@ export default function CompareProduct({ onBuyNow }) {
                 </span>
               )}
             </div>
-            {/* Product name & category inside the card */}
+            {/* Product name & description */}
             <div className="mt-3 px-1">
               <h4 className="text-sm font-bold text-gray-900">{product.name}</h4>
-              <p className="text-xs text-gray-500 mt-0.5">{product.category}</p>
+              <p className="text-xs text-gray-500 mt-0.5">{product.description}</p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Comparison rows */}
+      {/* Comparison rows — 9 attributes */}
       <div className="space-y-3">
         {comparisonFields.map((field) => (
-          <div key={field.key}>
+          <div key={field}>
             <div className="grid grid-cols-2 gap-4">
               {compareProducts.map((product, idx) => (
                 <div key={product.id}>
-                  <p className="text-xs text-gray-400 mb-1">{field.label}</p>
+                  <p className="text-xs text-gray-400 mb-1">{field}</p>
                   <div
                     className="rounded-lg px-3 py-2.5"
                     style={{ background: idx === 0 ? 'rgba(15, 176, 234, 0.06)' : '#f9fafb' }}
                   >
                     <p className="text-sm font-medium text-gray-900">
-                      {field.format
-                        ? field.format(product[field.key])
-                        : product[field.key] || '\u2014'}
+                      {comparisonData[field][idx]}
                     </p>
                   </div>
                 </div>
@@ -98,8 +112,40 @@ export default function CompareProduct({ onBuyNow }) {
         ))}
       </div>
 
+      {/* Fit Risk Assessment */}
+      <div className="mt-5 pt-4 border-t border-gray-100">
+        <h4 className="text-sm font-bold text-gray-900 mb-3">Fit Risk Assessment</h4>
+        <div className="space-y-2">
+          {fitRiskAssessment.map((item) => (
+            <div key={item.name} className="flex items-start gap-2">
+              <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded flex-shrink-0">
+                {item.risk}
+              </span>
+              <p className="text-sm text-gray-700">
+                <span className="font-medium">{item.name}</span> — {item.note}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Recommendation */}
+      <div className="mt-4 pt-4 border-t border-gray-100">
+        <h4 className="text-sm font-bold text-gray-900 mb-3">Recommendation</h4>
+        <div className="space-y-2">
+          {recommendations.map((item) => (
+            <p key={item.name} className="text-sm text-gray-700">
+              <span className="font-medium">{item.name}</span> — {item.note}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      {/* Cart prompt */}
+      <p className="text-sm text-gray-900 font-semibold mt-4">Would you like to add one of these to your cart?</p>
+
       {/* Buy now buttons */}
-      <div className="grid grid-cols-2 gap-4 mt-5">
+      <div className="grid grid-cols-2 gap-4 mt-3">
         {compareProducts.map((product) => (
           <button
             key={product.id}

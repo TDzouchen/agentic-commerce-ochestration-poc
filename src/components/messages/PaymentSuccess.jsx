@@ -55,8 +55,9 @@ export default function PaymentSuccess() {
           </div>
           <div>
             <h4 className="text-sm font-semibold text-gray-900">{product.name}</h4>
-            <p className="text-sm text-gray-500">{product.category}</p>
-            <p className="text-sm text-gray-700 mt-1">Size ({order.size}): {order.sizeValue}</p>
+            <p className="text-sm text-gray-500">{product.description}</p>
+            <p className="text-sm text-gray-700 mt-1">Size: {order.size}</p>
+            <p className="text-sm text-gray-700">Color: {order.color}</p>
             <p className="text-sm text-gray-700">Quantity: {order.quantity}</p>
           </div>
         </div>
@@ -82,7 +83,7 @@ export default function PaymentSuccess() {
               </svg>
               {user.memberTier} member {Math.round(user.discount * 100)}% discount
             </span>
-            <span className="text-sm text-[#D48806]">-${Math.abs(order.memberDiscount)}</span>
+            <span className="text-sm text-[#D48806]">-${order.discount}</span>
           </div>
         </div>
 

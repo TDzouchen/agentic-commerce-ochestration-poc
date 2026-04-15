@@ -1,7 +1,7 @@
 import { products } from '../../data/products'
 import { user, order } from '../../data/user'
 
-export default function OrderSummary({ onCheckout }) {
+export default function OrderSummary({ onPayNow }) {
   const product = products.find((p) => p.id === order.productId)
 
   return (
@@ -20,8 +20,9 @@ export default function OrderSummary({ onCheckout }) {
         </div>
         <div className="pt-1">
           <h3 className="text-base font-bold text-gray-900">{product.name}</h3>
-          <p className="text-sm text-gray-500 mt-0.5">{product.category}</p>
-          <p className="text-sm text-gray-900 mt-3">Size ({order.size}): {order.sizeValue}</p>
+          <p className="text-sm text-gray-500 mt-0.5">{product.description}</p>
+          <p className="text-sm text-gray-900 mt-3">Size: {order.size}</p>
+          <p className="text-sm text-gray-900 mt-0.5">Color: {order.color}</p>
         </div>
       </div>
 
@@ -52,7 +53,7 @@ export default function OrderSummary({ onCheckout }) {
             </svg>
             {user.memberTier} member {Math.round(user.discount * 100)}% discount
           </span>
-          <span className="text-sm text-[#D48806]">-${Math.abs(order.memberDiscount)}</span>
+          <span className="text-sm text-[#D48806]">-${order.discount}</span>
         </div>
       </div>
 
@@ -74,10 +75,10 @@ export default function OrderSummary({ onCheckout }) {
 
       {/* Checkout button */}
       <button
-        onClick={onCheckout}
+        onClick={onPayNow}
         className="w-full mt-6 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors h-[36px]"
       >
-        Checkout
+        Pay Now
       </button>
     </div>
   )

@@ -8,7 +8,7 @@ import bgMain from './assets/images/1-bg.png'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
-  const { messages, isTyping, currentStage, sendMessage, handleBuyNow, handleCheckout } = useConversation()
+  const { messages, isTyping, currentStage, sendMessage, handleBuyNow, handlePayNow } = useConversation()
 
   const handleBubbleSend = useCallback((text) => {
     setIsOpen(true)
@@ -36,7 +36,7 @@ function App() {
           messages={messages}
           isTyping={isTyping}
           onBuyNow={handleBuyNow}
-          onCheckout={handleCheckout}
+          onPayNow={handlePayNow}
         />
         <MessageInput
           onSend={sendMessage}

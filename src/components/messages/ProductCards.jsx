@@ -6,7 +6,7 @@ export default function ProductCards({ onBuyNow }) {
       {products.map((product) => (
         <div
           key={product.id}
-          className="bg-white border border-gray-200 rounded-[12px] overflow-hidden p-4"
+          className="bg-white border border-gray-200 rounded-[12px] overflow-hidden p-4 flex flex-col"
         >
           {/* Product image */}
           <div className="bg-[#F5F5F5] rounded-[8px] flex items-center justify-center h-[180px]">
@@ -20,19 +20,31 @@ export default function ProductCards({ onBuyNow }) {
             />
           </div>
           {/* Product info */}
-          <div className="pt-3">
+          <div className="pt-3 flex flex-col flex-1">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
                 <h3 className="text-sm font-bold text-gray-900 leading-tight">{product.name}</h3>
-                <p className="text-xs text-gray-500 mt-0.5">{product.category}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{product.description}</p>
               </div>
-              {product.inStock && (
-                <span className="text-xs text-gray-500 bg-[#EEF0F2] rounded-full px-2 py-0.5 whitespace-nowrap flex-shrink-0">
-                  In-stock
-                </span>
-              )}
             </div>
-            <div className="mt-3 mb-3">
+            {/* Tags */}
+            <div className="mt-2">
+              <span className="text-xs text-gray-400">
+                {product.tags.join(' | ')}
+              </span>
+            </div>
+            {/* Available color */}
+            <div className="mt-1.5 flex items-center gap-1">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
+                <path d="M2 6l3 3 5-5" stroke="#22C55E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="text-xs text-gray-600">{product.availableColor}</span>
+            </div>
+            {/* Ownership note */}
+            {product.owned && product.ownershipNote && (
+              <p className="text-xs text-gray-400 italic mt-1">{product.ownershipNote}</p>
+            )}
+            <div className="mt-auto pt-3 mb-3">
               <span className="text-2xl font-bold text-gray-900">${product.price}</span>
               <span className="text-xs text-gray-500 ml-1">USD</span>
             </div>

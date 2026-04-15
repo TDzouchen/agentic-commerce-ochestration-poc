@@ -1,44 +1,52 @@
 export const stages = {
   GREETING: {
-    keywords: ['running', 'shoe', 'runner', 'long-distance', 'sneaker', 'trainer'],
+    keywords: ['work', 'shoe', 'comfortable', 'wide', 'budget', 'email', 'alex'],
     aiReply:
-      "Hi Alex, this is our fastest running shoe.\nHowever, based on your profile, you usually prefer max cushioning. This model is built for speed and performance, so it feels firmer than a typical daily trainer.\nWould you like to see how compares with our **most cushioned option**, the Zenith or view it?",
+      'Welcome back, Alex! As a gold member, I\'ve matched your preferences to our catalog.\n\n**Your Profile**\n• Size: US 10.5  |  Width: Wide  |  Style: Technical, performance, minimal\n• Gold member — 30-day returns\n\n⚠ **Fit Alert**\nYou returned the Carbon Loafer — "Too narrow across forefoot" — significant discomfort by end of day. I\'ve excluded narrow-fit styles from your results.\n\n**Recommended for You**',
     component: 'ProductCards',
     fallback:
-      "I'd be happy to help you find the perfect shoes! Are you looking for running shoes, casual wear, or something else?",
+      "I can help with footwear recommendations. Could you tell me what type of shoes you're looking for?",
   },
-  COMPARE: {
-    keywords: ['compare', 'difference', 'vs', 'how do these', 'diff', 'versus'],
-    aiReply: '',
+  RECOMMEND: {
+    keywords: ['compare', 'shift runner', 'vault court', 'vs', 'difference', 'side-by-side'],
+    aiReply: "Here's a side-by-side comparison of the Shift Runner and Vault Court Sneaker:",
     component: 'CompareProduct',
     fallback:
-      "Great options, right? Would you like to compare any of these products to find the best fit for you?",
+      'Would you like to compare any of these, or add one to your cart?',
   },
-  ORDER: {
-    keywords: [],
+  COMPARE: {
+    keywords: ['buy', 'shift runner', 'bone', 'order', 'purchase', 'like to buy'],
+    aiReply:
+      'Great choice! As a gold member, you get 15% discount. Shall I place the order for the Shift Runner in Bone with your discount applied?',
+    component: null,
+    fallback:
+      'Would you like to add one of these to your cart?',
+  },
+  CONFIRM_DISCOUNT: {
+    keywords: ['yes', 'sure', 'please', 'go ahead', 'confirm', 'ok'],
     aiReply: '',
     component: 'OrderSummary',
     fallback:
-      "Take your time comparing! Click 'Buy now' when you've decided, or ask me anything about these products.",
+      'Would you like me to proceed with the order?',
   },
   CHECKOUT: {
-    keywords: ['paid', 'pay', 'already paid', 'payment', 'done', 'completed'],
+    keywords: [],
     aiReply: '',
     component: 'PaymentSuccess',
     fallback:
-      "Whenever you're ready, just let me know once you've completed the payment!",
+      "Let me know once you've completed the payment!",
   },
   PAYMENT: {
     keywords: [],
     aiReply: '',
     component: null,
     fallback:
-      'Your order is confirmed! Is there anything else I can help you with?',
+      'Your order is confirmed!',
   },
 }
 
 export const greetingMessage = {
   type: 'ai',
-  text: 'Hi Alex — how can I help today?',
+  text: 'Hello! Welcome to Vault Noir AI Concierge. How can I assist you with your footwear needs today? If you have an email address, please provide it so I can access your profile and personalize your experience.',
   component: null,
 }

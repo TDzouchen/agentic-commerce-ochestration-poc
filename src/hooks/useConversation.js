@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { stages, greetingMessage } from '../data/conversation'
 import { config } from '../data/config'
 
-const STAGE_ORDER = ['GREETING', 'COMPARE', 'ORDER', 'CHECKOUT', 'PAYMENT']
+const STAGE_ORDER = ['GREETING', 'RECOMMEND', 'COMPARE', 'CONFIRM_DISCOUNT', 'CHECKOUT', 'PAYMENT']
 
 function matchKeywords(text, keywords) {
   const lower = text.toLowerCase()
@@ -73,22 +73,32 @@ export function useConversation() {
   const handleBuyNow = useCallback(
     (product) => {
       if (isTyping) return
-      if (currentStage !== 'ORDER') return
 
-      const userMsg = { type: 'user', text: `I'd like to order the ${product.name}.` }
-      setMessages((prev) => [...prev, userMsg])
-      const nextIndex = stageIndex + 1
-      setStageIndex(nextIndex)
-      addAiResponse(nextIndex)
+      if (currentStage === 'RECOMMEND') {
+        // From ProductCards: skip COMPARE, jump to CONFIRM_DISCOUNT
+        const userMsg = { type: 'user', text: `I would like to buy the ${product.name} in ${product.availableColor}.` }
+        setMessages((prev) => [...prev, userMsg])
+        // Skip to CONFIRM_DISCOUNT (index 3)
+        const confirmIndex = STAGE_ORDER.indexOf('CONFIRM_DISCOUNT')
+        setStageIndex(confirmIndex)
+        addAiResponse(confirmIndex)
+      } else if (currentStage === 'COMPARE') {
+        // From CompareProduct: advance to CONFIRM_DISCOUNT
+        const userMsg = { type: 'user', text: `I would like to buy the ${product.name} in ${product.availableColor}.` }
+        setMessages((prev) => [...prev, userMsg])
+        const nextIndex = stageIndex + 1
+        setStageIndex(nextIndex)
+        addAiResponse(nextIndex)
+      }
     },
     [currentStage, stageIndex, isTyping, addAiResponse]
   )
 
-  const handleCheckout = useCallback(() => {
+  const handlePayNow = useCallback(() => {
     if (isTyping) return
     if (currentStage !== 'CHECKOUT') return
 
-    const userMsg = { type: 'user', text: 'I have already paid.' }
+    const userMsg = { type: 'user', text: 'Payment confirmed.' }
     setMessages((prev) => [...prev, userMsg])
     const nextIndex = stageIndex + 1
     setStageIndex(nextIndex)
@@ -101,6 +111,6 @@ export function useConversation() {
     currentStage,
     sendMessage,
     handleBuyNow,
-    handleCheckout,
+    handlePayNow,
   }
 }

@@ -28,7 +28,7 @@ function TypingIndicator() {
   )
 }
 
-export default function MessageList({ messages, isTyping, onBuyNow, onCheckout }) {
+export default function MessageList({ messages, isTyping, onBuyNow, onPayNow }) {
   const bottomRef = useRef(null)
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function MessageList({ messages, isTyping, onBuyNow, onCheckout }
         {components.map((compName, i) => {
           const Comp = componentMap[compName]
           if (!Comp) return null
-          return <Comp key={i} onBuyNow={onBuyNow} onCheckout={onCheckout} />
+          return <Comp key={i} onBuyNow={onBuyNow} onPayNow={onPayNow} />
         })}
       </div>
     )

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agentic Commerce POC — Demo Flow Guide</title>
+    <title>Agentic Commerce POC — Alex Chen Demo Flow Guide</title>
     <style>
       * {
         box-sizing: border-box;
@@ -59,9 +59,9 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        width: 24px;
+        width: 20px;
         color: #334155;
-        font-size: 18px;
+        font-size: 16px;
       }
 
       /* Step column */
@@ -96,7 +96,7 @@
         flex-shrink: 0;
       }
       .col-head h3 {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         white-space: nowrap;
         overflow: hidden;
@@ -105,10 +105,10 @@
       .col-body {
         flex: 1;
         overflow-y: auto;
-        padding: 10px 12px;
+        padding: 8px 10px;
       }
       .col-body > * + * {
-        margin-top: 8px;
+        margin-top: 6px;
       }
 
       /* Sections */
@@ -124,16 +124,16 @@
         background: #f1f5f9;
         border-left: 2px solid #0fb0ea;
         border-radius: 6px;
-        padding: 6px 8px;
-        font-size: 11px;
+        padding: 5px 7px;
+        font-size: 10px;
         color: #374151;
       }
       .rich {
         background: #f8fafc;
         border: 1px dashed #cbd5e1;
         border-radius: 6px;
-        padding: 6px 8px;
-        font-size: 11px;
+        padding: 5px 7px;
+        font-size: 10px;
         color: #334155;
       }
       .rich strong {
@@ -141,7 +141,7 @@
       }
       .rich .sub {
         color: #94a3b8;
-        font-size: 10px;
+        font-size: 9px;
         margin-top: 2px;
       }
 
@@ -149,15 +149,15 @@
       .tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 4px;
+        gap: 3px;
       }
       .kw {
         background: #ecfdf5;
         color: #065f46;
         border: 1px solid #a7f3d0;
         border-radius: 10px;
-        padding: 1px 8px;
-        font-size: 10px;
+        padding: 1px 6px;
+        font-size: 9px;
         font-weight: 600;
         font-family: "SF Mono", ui-monospace, monospace;
       }
@@ -166,19 +166,19 @@
         color: #1e40af;
         border: 1px solid #93c5fd;
         border-radius: 10px;
-        padding: 1px 8px;
-        font-size: 10px;
+        padding: 1px 6px;
+        font-size: 9px;
         font-weight: 600;
       }
 
       /* Trigger type badge */
       .ttype {
         display: inline-block;
-        font-size: 9px;
+        font-size: 8px;
         font-weight: 700;
         text-transform: uppercase;
         color: #fff;
-        padding: 1px 6px;
+        padding: 1px 5px;
         border-radius: 3px;
         margin-bottom: 3px;
       }
@@ -194,8 +194,8 @@
         background: #fff7ed;
         border: 1px solid #fed7aa;
         border-radius: 6px;
-        padding: 5px 8px;
-        font-size: 10px;
+        padding: 4px 7px;
+        font-size: 9px;
         color: #9a3412;
       }
 
@@ -204,13 +204,25 @@
         display: inline-block;
         background: #dc2626;
         color: #fff;
-        font-size: 9px;
+        font-size: 8px;
         font-weight: 700;
         text-transform: uppercase;
-        padding: 0px 6px;
+        padding: 0px 5px;
         border-radius: 8px;
         margin-left: 4px;
         vertical-align: middle;
+      }
+
+      /* Skip badge */
+      .skip-badge {
+        display: inline-block;
+        background: #f59e0b;
+        color: #fff;
+        font-size: 8px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0px 5px;
+        border-radius: 8px;
       }
 
       /* Footer */
@@ -236,30 +248,34 @@
       .trigger-block {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
       }
     </style>
   </head>
   <body>
     <div class="header">
-      <h1>Agentic Commerce POC — Demo Flow</h1>
+      <h1>Vault Noir AI Concierge — Alex Chen Demo Flow</h1>
       <p>
-        Each column = one step. Green tags = type keyword · Blue tags = click
-        rich UI button.
+        6-stage work-shoes flow · Green tags = type keyword · Blue tags = click
+        rich UI button · Gold = Buy now skip
       </p>
     </div>
 
     <div class="board">
-      <!-- ===== STEP 1 ===== -->
+      <!-- ===== STEP 1: GREETING ===== -->
       <div class="col">
         <div class="col-head">
           <div class="col-num">1</div>
-          <h3>Welcome</h3>
+          <h3>Greeting</h3>
         </div>
         <div class="col-body">
           <div>
             <div class="lbl">AI Says</div>
-            <div class="ai">"Hi Alex — how can I help today?"</div>
+            <div class="ai">
+              "Hello! Welcome to Vault Noir AI Concierge. How can I assist you
+              with your footwear needs today? If you have an email address,
+              please provide it so I can access your profile..."
+            </div>
           </div>
           <div>
             <div class="lbl">UI Output</div>
@@ -269,19 +285,20 @@
             <div class="lbl">Advance → Step 2</div>
             <span class="ttype kw-type">Keyword</span>
             <div class="tags">
-              <span class="kw">running</span>
+              <span class="kw">work</span>
               <span class="kw">shoe</span>
-              <span class="kw">runner</span>
-              <span class="kw">long-distance</span>
-              <span class="kw">sneaker</span>
-              <span class="kw">trainer</span>
+              <span class="kw">comfortable</span>
+              <span class="kw">wide</span>
+              <span class="kw">budget</span>
+              <span class="kw">email</span>
+              <span class="kw">alex</span>
             </div>
           </div>
           <div>
             <div class="lbl">Fallback</div>
             <div class="fb">
-              "Are you looking for running shoes, casual wear, or something
-              else?"
+              "I can help with footwear recommendations. Could you tell me what
+              type of shoes you're looking for?"
             </div>
           </div>
         </div>
@@ -289,26 +306,33 @@
 
       <div class="arrow-col">→</div>
 
-      <!-- ===== STEP 2 ===== -->
+      <!-- ===== STEP 2: RECOMMEND ===== -->
       <div class="col">
         <div class="col-head">
           <div class="col-num">2</div>
-          <h3>Product Cards</h3>
+          <h3>Recommend</h3>
         </div>
         <div class="col-body">
           <div>
             <div class="lbl">AI Says</div>
             <div class="ai">
-              "This is our fastest running shoe…Would you like to compare?"
+              "Welcome back, Alex! As a gold member, I've matched your
+              preferences..."<br />
+              <strong>Your Profile</strong> · US 10.5 · Wide · Technical<br />
+              ⚠ <strong>Fit Alert</strong> — Carbon Loafer returned<br />
+              <strong>Recommended for You</strong>
             </div>
           </div>
           <div>
             <div class="lbl">Rich UI</div>
             <div class="rich">
               <strong>ProductCards</strong><br />
-              3 cards: Zenith Pro ($135) · RU MAX 350 ($128) · AIRSC SPEEDCROSSS
-              ($150)<br />
-              <div class="sub">[Buy now] buttons do NOT advance here</div>
+              Forge Derby ($575) · Vault Court ($390) · Shift Runner ($420)<br />
+              Tags · Color ✅ · Ownership notes<br />
+              <div class="sub">
+                [Buy now] → <span class="skip-badge">Skip</span> jumps to Step
+                4 (Confirm Discount)
+              </div>
             </div>
           </div>
           <div>
@@ -316,17 +340,17 @@
             <span class="ttype kw-type">Keyword</span>
             <div class="tags">
               <span class="kw">compare</span>
-              <span class="kw">difference</span>
+              <span class="kw">shift runner</span>
+              <span class="kw">vault court</span>
               <span class="kw">vs</span>
-              <span class="kw">how do these</span>
-              <span class="kw">diff</span>
-              <span class="kw">versus</span>
+              <span class="kw">difference</span>
+              <span class="kw">side-by-side</span>
             </div>
           </div>
           <div>
             <div class="lbl">Fallback</div>
             <div class="fb">
-              "Would you like to compare any of these products?"
+              "Would you like to compare any of these, or add one to your cart?"
             </div>
           </div>
         </div>
@@ -334,7 +358,7 @@
 
       <div class="arrow-col">→</div>
 
-      <!-- ===== STEP 3 ===== -->
+      <!-- ===== STEP 3: COMPARE ===== -->
       <div class="col">
         <div class="col-head">
           <div class="col-num">3</div>
@@ -343,42 +367,106 @@
         <div class="col-body">
           <div>
             <div class="lbl">AI Says</div>
-            <div class="ai"><em>(no text)</em></div>
+            <div class="ai">
+              "Here's a side-by-side comparison of the Shift Runner and Vault
+              Court Sneaker:"
+            </div>
           </div>
           <div>
             <div class="lbl">Rich UI</div>
             <div class="rich">
               <strong>CompareProduct</strong><br />
-              Zenith Pro ⭐ vs RU MAX 350<br />
-              Price · Material · Weight · Best for · Agent advice<br />
+              Shift Runner ⭐ vs Vault Court Sneaker<br />
+              9 attrs · Fit Risk · Recommendation<br />
               Each has <strong>[Buy now]</strong>
             </div>
           </div>
           <div>
             <div class="lbl">Advance → Step 4</div>
-            <span class="ttype btn-type">Rich UI Button</span>
-            <div class="tags">
-              <span class="btn-tag">Click [Buy now]</span>
-            </div>
-            <div style="font-size: 10px; color: #64748b; margin-top: 2px">
-              Typing won't work — must click button.<br />
-              Auto-sends: "I'd like to order the {name}."
+            <div class="trigger-block">
+              <div>
+                <span class="ttype btn-type">Rich UI Button</span>
+                <div class="tags">
+                  <span class="btn-tag">Click [Buy now]</span>
+                </div>
+                <div style="font-size: 9px; color: #64748b">
+                  Auto-sends: "I would like to buy the {name} in {color}."
+                </div>
+              </div>
+              <div style="font-size: 8px; color: #94a3b8; text-align: center">
+                — OR —
+              </div>
+              <div>
+                <span class="ttype kw-type">Keyword</span>
+                <div class="tags">
+                  <span class="kw">buy</span>
+                  <span class="kw">shift runner</span>
+                  <span class="kw">bone</span>
+                  <span class="kw">order</span>
+                  <span class="kw">purchase</span>
+                  <span class="kw">like to buy</span>
+                </div>
+              </div>
             </div>
           </div>
           <div>
             <div class="lbl">Fallback</div>
-            <div class="fb">"Click 'Buy now' when you've decided."</div>
+            <div class="fb">
+              "Would you like to add one of these to your cart?"
+            </div>
           </div>
         </div>
       </div>
 
       <div class="arrow-col">→</div>
 
-      <!-- ===== STEP 4 ===== -->
+      <!-- ===== STEP 4: CONFIRM DISCOUNT ===== -->
       <div class="col">
         <div class="col-head">
           <div class="col-num">4</div>
-          <h3>Order &amp; Checkout</h3>
+          <h3>Confirm Discount</h3>
+        </div>
+        <div class="col-body">
+          <div>
+            <div class="lbl">AI Says</div>
+            <div class="ai">
+              "Great choice! As a gold member, you get 15% discount. Shall I
+              place the order for the Shift Runner in Bone with your discount
+              applied?"
+            </div>
+          </div>
+          <div>
+            <div class="lbl">UI Output</div>
+            <div class="rich">Text only — no rich component</div>
+          </div>
+          <div>
+            <div class="lbl">Advance → Step 5</div>
+            <span class="ttype kw-type">Keyword</span>
+            <div class="tags">
+              <span class="kw">yes</span>
+              <span class="kw">sure</span>
+              <span class="kw">please</span>
+              <span class="kw">go ahead</span>
+              <span class="kw">confirm</span>
+              <span class="kw">ok</span>
+            </div>
+          </div>
+          <div>
+            <div class="lbl">Fallback</div>
+            <div class="fb">
+              "Would you like me to proceed with the order?"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-col">→</div>
+
+      <!-- ===== STEP 5: CHECKOUT ===== -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-num">5</div>
+          <h3>Checkout</h3>
         </div>
         <div class="col-body">
           <div>
@@ -389,37 +477,20 @@
             <div class="lbl">Rich UI</div>
             <div class="rich">
               <strong>OrderSummary</strong><br />
-              Zenith Pro · US 10 · $135 − 15% = <strong>$122</strong><br />
-              Ship to: ALEX M. · Syracuse CT<br />
-              Has <strong>[Checkout]</strong> button
+              Shift Runner · Bone · US 10.5<br />
+              $420 − 15% = <strong>$357</strong><br />
+              Ship to: Alex Chen · Syracuse CT<br />
+              Has <strong>[Pay Now]</strong> button
             </div>
           </div>
           <div>
-            <div class="lbl">Advance → Step 5 (two ways)</div>
-            <div class="trigger-block">
-              <div>
-                <span class="ttype btn-type">Rich UI Button</span>
-                <div class="tags">
-                  <span class="btn-tag">Click [Checkout]</span>
-                </div>
-                <div style="font-size: 10px; color: #64748b">
-                  Auto-sends: "I have already paid."
-                </div>
-              </div>
-              <div style="font-size: 9px; color: #94a3b8; text-align: center">
-                — OR —
-              </div>
-              <div>
-                <span class="ttype kw-type">Keyword</span>
-                <div class="tags">
-                  <span class="kw">paid</span>
-                  <span class="kw">pay</span>
-                  <span class="kw">already paid</span>
-                  <span class="kw">payment</span>
-                  <span class="kw">done</span>
-                  <span class="kw">completed</span>
-                </div>
-              </div>
+            <div class="lbl">Advance → Step 6</div>
+            <span class="ttype btn-type">Rich UI Button</span>
+            <div class="tags">
+              <span class="btn-tag">Click [Pay Now]</span>
+            </div>
+            <div style="font-size: 9px; color: #64748b">
+              Auto-sends: "Payment confirmed."
             </div>
           </div>
           <div>
@@ -433,10 +504,10 @@
 
       <div class="arrow-col">→</div>
 
-      <!-- ===== STEP 5 ===== -->
+      <!-- ===== STEP 6: PAYMENT ===== -->
       <div class="col">
         <div class="col-head">
-          <div class="col-num">5</div>
+          <div class="col-num">6</div>
           <h3>Done <span class="end-badge">End</span></h3>
         </div>
         <div class="col-body">
@@ -446,8 +517,9 @@
               <strong>PaymentSuccess</strong><br />
               ✅ Payment success<br />
               Order #127896394<br />
-              Zenith Pro · Qty 1 · <strong>$122</strong><br />
-              Est. delivery: Wed, Apr 8
+              Shift Runner · Bone · US 10.5 · Qty 1<br />
+              $420 − $63 = <strong>$357</strong><br />
+              Est. delivery: Wed, Apr 22
             </div>
           </div>
           <div>
@@ -464,16 +536,18 @@
 
     <div class="footer">
       <span
-        ><strong>Quick script:</strong> "I need running shoes" → "compare them"
-        → click [Buy now] → click [Checkout] → done (~30s)</span
+        ><strong>Quick script:</strong> "I need comfortable work shoes" →
+        "compare shift runner vs vault court" → click [Buy now] → "yes" → click
+        [Pay Now] → done (~60s)</span
       >
       <span
-        ><strong>Order hardcoded:</strong> Zenith Pro · US 10 · Gold 15%
-        off</span
+        ><strong>Order hardcoded:</strong> Shift Runner · Bone · US 10.5 · Gold
+        15% off · $357</span
       >
       <span><strong>AI delay:</strong> 3–10s per response</span>
       <span
-        ><strong>Linear only:</strong> no skip / no back / refresh = reset</span
+        ><strong>Skip:</strong> [Buy now] from Step 2 skips Compare → goes to
+        Step 4</span
       >
     </div>
   </body>

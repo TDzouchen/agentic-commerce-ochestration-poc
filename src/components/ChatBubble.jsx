@@ -39,7 +39,7 @@ export default function ChatBubble({ onOpen, onSend }) {
         <span className="gradient-text text-sm font-medium">AI Assistant</span>
       </div>
       <div className="text-sm text-gray-700 mb-3">
-        Hi Alex — how can I help today?
+        Hello! Welcome to Vault Noir AI Concierge. How can I assist you with your footwear needs today? If you have an email address, please provide it so I can access your profile and personalize your experience.
       </div>
       <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center gap-2 bg-gray-50 rounded-full px-4 py-2">
