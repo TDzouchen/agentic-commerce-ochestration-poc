@@ -2,28 +2,16 @@ import { products } from '../../data/products'
 
 const compareProducts = [products[2], products[1]] // Shift Runner vs Vault Court Sneaker
 
-const comparisonData = {
-  'Price': ['$195', '$175'],
-  'Width': ['Wide', 'Wide'],
-  'Toe Shape': ['Rounded toe', 'Rounded toe'],
-  'Construction': ['Stitchdown construction', 'Vulcanized rubber sole'],
-  'Break-in': ['Moderate break-in period', 'Minimal break-in period'],
-  'All-day Comfort': ['8+ hours', '6-8 hours'],
-  'Weather': ['Weather-resistant leather upper', 'Weather-resistant canvas upper'],
-  'Resolable': ['Yes, up to 3 years', 'No'],
-  'Fit Risk': ['LOW', 'LOW'],
-}
-
-const comparisonFields = Object.keys(comparisonData)
-
-const fitRiskAssessment = [
-  { name: 'Shift Runner', risk: 'LOW', note: 'wide fit and you own this product without return.' },
-  { name: 'Vault Court Sneaker', risk: 'LOW', note: 'wide fit and you own this product without return.' },
-]
-
-const recommendations = [
-  { name: 'Shift Runner', note: 'Best for durability, resolability, and longer all-day comfort.' },
-  { name: 'Vault Court Sneaker', note: 'Better for casual wear and minimal break-in period.' },
+const comparisonFields = [
+  { label: 'Price', key: (p) => `$${p.price}` },
+  { label: 'Width', key: (p) => p.comparison.width },
+  { label: 'Toe Shape', key: (p) => p.comparison.toeShape },
+  { label: 'Construction', key: (p) => p.comparison.construction },
+  { label: 'Break-in', key: (p) => p.comparison.breakIn },
+  { label: 'All-day Comfort', key: (p) => p.comparison.allDayComfort },
+  { label: 'Weather', key: (p) => p.comparison.weather },
+  { label: 'Resolable', key: (p) => p.comparison.resolable },
+  { label: 'Fit Risk', key: (p) => p.comparison.fitRisk },
 ]
 
 export default function CompareProduct({ onBuyNow }) {
@@ -92,17 +80,17 @@ export default function CompareProduct({ onBuyNow }) {
       {/* Comparison rows — 9 attributes */}
       <div className="space-y-3">
         {comparisonFields.map((field) => (
-          <div key={field}>
+          <div key={field.label}>
             <div className="grid grid-cols-2 gap-4">
               {compareProducts.map((product, idx) => (
                 <div key={product.id}>
-                  <p className="text-xs text-gray-400 mb-1">{field}</p>
+                  <p className="text-xs text-gray-400 mb-1">{field.label}</p>
                   <div
                     className="rounded-lg px-3 py-2.5"
                     style={{ background: idx === 0 ? 'rgba(15, 176, 234, 0.06)' : '#f9fafb' }}
                   >
                     <p className="text-sm font-medium text-gray-900">
-                      {comparisonData[field][idx]}
+                      {field.key(product)}
                     </p>
                   </div>
                 </div>
@@ -116,13 +104,13 @@ export default function CompareProduct({ onBuyNow }) {
       <div className="mt-5 pt-4 border-t border-gray-100">
         <h4 className="text-sm font-bold text-gray-900 mb-3">Fit Risk Assessment</h4>
         <div className="space-y-2">
-          {fitRiskAssessment.map((item) => (
-            <div key={item.name} className="flex items-start gap-2">
+          {compareProducts.map((product) => (
+            <div key={product.id} className="flex items-start gap-2">
               <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded flex-shrink-0">
-                {item.risk}
+                {product.comparison.fitRisk}
               </span>
               <p className="text-sm text-gray-700">
-                <span className="font-medium">{item.name}</span> — {item.note}
+                <span className="font-medium">{product.name}</span> — {product.comparison.fitRiskNote}
               </p>
             </div>
           ))}
@@ -133,9 +121,9 @@ export default function CompareProduct({ onBuyNow }) {
       <div className="mt-4 pt-4 border-t border-gray-100">
         <h4 className="text-sm font-bold text-gray-900 mb-3">Recommendation</h4>
         <div className="space-y-2">
-          {recommendations.map((item) => (
-            <p key={item.name} className="text-sm text-gray-700">
-              <span className="font-medium">{item.name}</span> — {item.note}
+          {compareProducts.map((product) => (
+            <p key={product.id} className="text-sm text-gray-700">
+              <span className="font-medium">{product.name}</span> — {product.comparison.recommendation}
             </p>
           ))}
         </div>
