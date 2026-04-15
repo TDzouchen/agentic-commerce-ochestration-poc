@@ -100,6 +100,22 @@ export default function CompareProduct({ onBuyNow }) {
         ))}
       </div>
 
+      {/* Cart prompt */}
+      <p className="text-sm text-gray-900 font-semibold mt-4">Would you like to add one of these to your cart?</p>
+
+      {/* Buy now buttons */}
+      <div className="grid grid-cols-2 gap-4 mt-3">
+        {compareProducts.map((product) => (
+          <button
+            key={product.id}
+            onClick={() => onBuyNow(product)}
+            className="w-full bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors h-[36px]"
+          >
+            Buy now
+          </button>
+        ))}
+      </div>
+
       {/* Fit Risk Assessment */}
       <div className="mt-5 pt-4 border-t border-gray-100">
         <h4 className="text-sm font-bold text-gray-900 mb-3">Fit Risk Assessment</h4>
@@ -129,21 +145,6 @@ export default function CompareProduct({ onBuyNow }) {
         </div>
       </div>
 
-      {/* Cart prompt */}
-      <p className="text-sm text-gray-900 font-semibold mt-4">Would you like to add one of these to your cart?</p>
-
-      {/* Buy now buttons */}
-      <div className="grid grid-cols-2 gap-4 mt-3">
-        {compareProducts.map((product) => (
-          <button
-            key={product.id}
-            onClick={() => onBuyNow(product)}
-            className="w-full bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors h-[36px]"
-          >
-            Buy now
-          </button>
-        ))}
-      </div>
     </div>
   )
 }

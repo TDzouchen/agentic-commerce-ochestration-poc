@@ -98,8 +98,6 @@ export function useConversation() {
     if (isTyping) return
     if (currentStage !== 'CHECKOUT') return
 
-    const userMsg = { type: 'user', text: 'Payment confirmed.' }
-    setMessages((prev) => [...prev, userMsg])
     const nextIndex = stageIndex + 1
     setStageIndex(nextIndex)
     addAiResponse(nextIndex)
