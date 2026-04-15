@@ -17,7 +17,7 @@ export const stages = {
   COMPARE: {
     keywords: ['buy', 'shift runner', 'bone', 'order', 'purchase', 'like to buy'],
     aiReply:
-      'Great choice! As a gold member, you get 15% discount. Shall I place the order for the Shift Runner in Bone with your discount applied?',
+      'Great choice! As a gold member, you get ~~15%~~ discount. The Shift Runner is $420, and with your discount you save **$63** — your price is **$357**. Shall I place the order for the Shift Runner in Bone with your discount applied?',
     component: null,
     fallback:
       'Would you like to add one of these to your cart?',

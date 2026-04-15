@@ -1,7 +1,7 @@
 function parseInlineMarkdown(text) {
   const parts = []
-  // Match **bold**, *italic*, and `code`
-  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g
+  // Match ~~red bold~~, **bold**, *italic*, and `code`
+  const regex = /(~~(.+?)~~|\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g
   let lastIndex = 0
   let match
 
@@ -10,11 +10,13 @@ function parseInlineMarkdown(text) {
       parts.push(text.slice(lastIndex, match.index))
     }
     if (match[2]) {
-      parts.push(<strong key={match.index} className="font-semibold">{match[2]}</strong>)
+      parts.push(<strong key={match.index} className="font-semibold text-red-600">{match[2]}</strong>)
     } else if (match[3]) {
-      parts.push(<em key={match.index}>{match[3]}</em>)
+      parts.push(<strong key={match.index} className="font-semibold">{match[3]}</strong>)
     } else if (match[4]) {
-      parts.push(<code key={match.index} className="bg-gray-100 px-1 rounded text-xs">{match[4]}</code>)
+      parts.push(<em key={match.index}>{match[4]}</em>)
+    } else if (match[5]) {
+      parts.push(<code key={match.index} className="bg-gray-100 px-1 rounded text-xs">{match[5]}</code>)
     }
     lastIndex = match.index + match[0].length
   }

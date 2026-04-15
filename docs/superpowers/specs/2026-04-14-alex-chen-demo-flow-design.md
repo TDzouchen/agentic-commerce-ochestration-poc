@@ -165,7 +165,7 @@ Then CompareProduct component renders below.
 
 ### CONFIRM_DISCOUNT:
 ```
-Great choice! As a gold member, you get 15% discount. Shall I place the order for the Shift Runner in Bone with your discount applied?
+Great choice! As a gold member, you get 15% discount. The Shift Runner is $420, and with your discount you save $63 — your price is **$357**. Shall I place the order for the Shift Runner in Bone with your discount applied?
 ```
 
 ### CHECKOUT:
